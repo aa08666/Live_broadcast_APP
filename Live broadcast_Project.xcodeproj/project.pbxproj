@@ -12,6 +12,7 @@
 		90C3AAFC21F95CF900EA7224 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFA21F95CF900EA7224 /* Main.storyboard */; };
 		90C3AAFE21F95CFB00EA7224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */; };
 		90C3AB0121F95CFB00EA7224 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFF21F95CFB00EA7224 /* LaunchScreen.storyboard */; };
+		AE91A0775EA72EE06CD525B9 /* Pods_Live_broadcast_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2039C9D890BD764135B6ED /* Pods_Live_broadcast_Project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90C3AB0021F95CFB00EA7224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90C3AB0221F95CFB00EA7224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9196450F1F7EA587514CD2DA /* Pods-Live broadcast_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live broadcast_Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live broadcast_Project/Pods-Live broadcast_Project.release.xcconfig"; sourceTree = "<group>"; };
+		AD2039C9D890BD764135B6ED /* Pods_Live_broadcast_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_broadcast_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D517F970120B66EB13E35570 /* Pods-Live broadcast_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live broadcast_Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live broadcast_Project/Pods-Live broadcast_Project.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE91A0775EA72EE06CD525B9 /* Pods_Live_broadcast_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2722C6C4562BFF845B958E9E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD2039C9D890BD764135B6ED /* Pods_Live_broadcast_Project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		90C3AAEA21F95CF800EA7224 = {
 			isa = PBXGroup;
 			children = (
 				90C3AAF521F95CF900EA7224 /* Live broadcast_Project */,
 				90C3AAF421F95CF900EA7224 /* Products */,
+				98364B3AC3828EFE858C6552 /* Pods */,
+				2722C6C4562BFF845B958E9E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +79,15 @@
 			path = "Live broadcast_Project";
 			sourceTree = "<group>";
 		};
+		98364B3AC3828EFE858C6552 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D517F970120B66EB13E35570 /* Pods-Live broadcast_Project.debug.xcconfig */,
+				9196450F1F7EA587514CD2DA /* Pods-Live broadcast_Project.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90C3AB0521F95CFB00EA7224 /* Build configuration list for PBXNativeTarget "Live broadcast_Project" */;
 			buildPhases = (
+				DAB637D58B6E3B75174766B0 /* [CP] Check Pods Manifest.lock */,
 				90C3AAEF21F95CF800EA7224 /* Sources */,
 				90C3AAF021F95CF800EA7224 /* Frameworks */,
 				90C3AAF121F95CF800EA7224 /* Resources */,
+				851F79C0BA918FF7208964DA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		851F79C0BA918FF7208964DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Live broadcast_Project/Pods-Live broadcast_Project-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Live broadcast_Project/Pods-Live broadcast_Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAB637D58B6E3B75174766B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Live broadcast_Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90C3AAEF21F95CF800EA7224 /* Sources */ = {
@@ -280,6 +365,7 @@
 		};
 		90C3AB0621F95CFB00EA7224 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D517F970120B66EB13E35570 /* Pods-Live broadcast_Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +383,7 @@
 		};
 		90C3AB0721F95CFB00EA7224 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9196450F1F7EA587514CD2DA /* Pods-Live broadcast_Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,6 @@
+framework module Pods_Live_broadcast_Project {
+  umbrella header "Pods-Live broadcast_Project-umbrella.h"
+
+  export *
+  module * { export * }
+}
