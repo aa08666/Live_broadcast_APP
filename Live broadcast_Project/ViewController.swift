@@ -13,10 +13,13 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     
+    var userDefault = UserDefaults.standard
+    
     let idvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IDViewController")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        reuseConfirm()
         // Do any additional setup after loading the view, typically from a nib.
     }
   
@@ -37,6 +40,8 @@ class ViewController: UIViewController {
                 print(token.expirationDate)
                 print("Login in !!!!")
                 
+                self.userDefault.setValue(token.authenticationToken, forKey: UserDefaultKeys.token)
+                
                 Request.postRequest(api: "/token", header: Headers.init(token: token.authenticationToken).header, expirationDate: token.expirationDate, callBack: { (callBack) in
                     DispatchQueue.main.async {
                         let json = try? JSON(data: callBack)
@@ -55,7 +60,42 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    func reuseConfirm(){
+        if let userToken = userDefault.value(forKey: UserDefaultKeys.token) as? String{
+            Request.getRequest(api: "/users", header: Headers.init(token: userToken).header) { (callBack) in
+                DispatchQueue.main.async {
+                    do {
+                        let json = try JSON(data: callBack)
+                        
+                        //                    json["result"].bool! ? self.navigationController?.pushViewController(self.idvc, animated: true) : self.errorAlert()
+                        
+                        guard json["result"].bool! else {
+                            self.errorAlert()
+                            return
+                        }
+                        self.navigationController?.pushViewController(self.idvc, animated: true)
+                        
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                
+            }
+        }
+    }
         
+}
+
+extension ViewController {
+    
+    func errorAlert(){
+        let alertC = UIAlertController(title: "Error", message: "Please try again", preferredStyle: .alert)
+        let alertA = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertC.addAction(alertA)
+        present(alertC, animated: true, completion: nil)
+    }
 }
     
 

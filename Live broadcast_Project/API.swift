@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct UserDefaultKeys {
+    static let token = "TokenKey"
+}
+
 struct Headers {
     let header: [String: String]
     
@@ -24,9 +28,9 @@ struct Headers {
 
 struct Request {
     
-    static func getRequest(callURL:String, header:[String:String], callBack: @escaping ([String:Any]) -> Void){
-        let url = URL(string: callURL)
-        var urlRequest = URLRequest(url: url!)
+    static func getRequest(api:String, header:[String:String], callBack: @escaping (Data) -> Void){
+        let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api)!
+        var urlRequest = URLRequest(url: url)
         
         for headers in header {
             urlRequest.addValue(headers.value, forHTTPHeaderField: headers.key)
@@ -37,18 +41,11 @@ struct Request {
                 print(error?.localizedDescription)
                 return
             }
-            let json_Response = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let jsonResponse = json_Response as? [String:Any] {
-                callBack(jsonResponse)
+           
+                callBack(data)
             }
-        }
         task.resume()
-    }
-    
-    
-    
-    
-    
+        }
     
     static func postRequest(api:String, header:[String:String], expirationDate:Date,callBack: @escaping (Data) -> Void){
         
@@ -58,14 +55,16 @@ struct Request {
         for headers in header {
             urlRequest.addValue(headers.value, forHTTPHeaderField: headers.key)
         }
+        //        urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: "Content-Type")
+        //         urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: "X-Requested-With")
+        //         urlRequest.addValue("asdd \(token)", forHTTPHeaderField: "Authorization")
+        //  參照上面for in 的寫法
+        
         let body:[String:String] = ["expirationDate":"\(expirationDate)"]
         
         urlRequest.httpBody = try? JSONEncoder().encode(body)
         urlRequest.httpMethod = "POST"
-//        urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: "Content-Type")
-//         urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: "X-Requested-With")
-//         urlRequest.addValue("asdd \(token)", forHTTPHeaderField: "Authorization")
-//  參照上面for in 的寫法
+
 
         
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, respose, error) in
@@ -74,11 +73,6 @@ struct Request {
                 return
             }
             callBack(data)
-//            let json_Response = try? JSONSerialization.jsonObject(with: data, options: [])
-//            // as?後面可以轉型成為自定義的Model   but!自定義的Model要完全符合
-//            if let jsonResponse = json_Response as? [String:Any] {
-//                callBack(jsonResponse)
-//            }
         }
         task.resume()
     }
