@@ -9,4 +9,5 @@ target 'Live broadcast_Project' do
 	pod 'FacebookCore'
 	pod 'FacebookLogin'
 	pod 'FacebookShare'
+        pod 'SwiftyJSON'
 end

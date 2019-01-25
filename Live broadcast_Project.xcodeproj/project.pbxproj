@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8E9F21FAA934004E15EB /* IDViewController.swift */; };
+		90BC229121F9A80F0095F3BC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BC229021F9A80F0095F3BC /* API.swift */; };
 		90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3AAF621F95CF900EA7224 /* AppDelegate.swift */; };
 		90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3AAF821F95CF900EA7224 /* ViewController.swift */; };
 		90C3AAFC21F95CF900EA7224 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFA21F95CF900EA7224 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		902A8E9F21FAA934004E15EB /* IDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDViewController.swift; sourceTree = "<group>"; };
+		90BC229021F9A80F0095F3BC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		90C3AAF321F95CF900EA7224 /* Live broadcast_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live broadcast_Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C3AAF621F95CF900EA7224 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90C3AAF821F95CF900EA7224 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */,
 				90C3AAFF21F95CFB00EA7224 /* LaunchScreen.storyboard */,
 				90C3AB0221F95CFB00EA7224 /* Info.plist */,
+				90BC229021F9A80F0095F3BC /* API.swift */,
+				902A8E9F21FAA934004E15EB /* IDViewController.swift */,
 			);
 			path = "Live broadcast_Project";
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -185,6 +192,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -221,6 +229,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */,
+				902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */,
+				90BC229121F9A80F0095F3BC /* API.swift in Sources */,
 				90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
