@@ -24,12 +24,16 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.39.1):
     - FBSDKCoreKit
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - NVActivityIndicatorView
   - SwiftyJSON
 
 SPEC REPOS:
@@ -41,6 +45,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
+    - NVActivityIndicatorView
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -51,8 +56,9 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: f442aa96179cc9b382bb4abeb7e340a47cca8f91
   FBSDKLoginKit: c3079d9a4db27c492287b1eed7a4272b28cf8a59
   FBSDKShareKit: 27d7b982e7b1f4638da2f2b1ab6eba5afc6b5888
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 207a786f94f32d5387a28466361fa2f856058ddd
+PODFILE CHECKSUM: f25ee2a52bc9df34a0f1d6ce21fc1cf2e2e4d905
 
 COCOAPODS: 1.5.3

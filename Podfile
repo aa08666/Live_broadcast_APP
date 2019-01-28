@@ -10,4 +10,5 @@ target 'Live broadcast_Project' do
 	pod 'FacebookLogin'
 	pod 'FacebookShare'
         pod 'SwiftyJSON'
+        pod 'NVActivityIndicatorView'
 end
