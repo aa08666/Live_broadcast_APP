@@ -10,8 +10,9 @@ import UIKit
 import FacebookLogin
 import FacebookCore
 import SwiftyJSON
+import NVActivityIndicatorView
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, NVActivityIndicatorViewable {
     
     var userDefault = UserDefaults.standard
     
@@ -25,7 +26,25 @@ class ViewController: UIViewController {
   
     @IBAction func LoginButton(_ sender: UIButton) {
         let manger = LoginManager()
+        
+
         manger.logIn(readPermissions: [.publicProfile], viewController: self) { (result) in
+            
+            let size = CGSize(width: 30, height: 30)
+            
+            self.startAnimating()
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                self.stopAnimating()
+            }
+            
+            
+            
+            
             if let accessToken = AccessToken.current {
                 print("access Token :\(accessToken)")
             }

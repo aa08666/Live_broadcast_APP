@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8E9F21FAA934004E15EB /* IDViewController.swift */; };
+		902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */; };
 		90BC229121F9A80F0095F3BC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BC229021F9A80F0095F3BC /* API.swift */; };
 		90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3AAF621F95CF900EA7224 /* AppDelegate.swift */; };
 		90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3AAF821F95CF900EA7224 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		902A8E9F21FAA934004E15EB /* IDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDViewController.swift; sourceTree = "<group>"; };
+		902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		90BC229021F9A80F0095F3BC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		90C3AAF321F95CF900EA7224 /* Live broadcast_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live broadcast_Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C3AAF621F95CF900EA7224 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		902A8EA521FFE9E9004E15EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */,
+				90BC229021F9A80F0095F3BC /* API.swift */,
+				902A8E9F21FAA934004E15EB /* IDViewController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		902A8EA621FFE9F2004E15EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90C3AAFA21F95CF900EA7224 /* Main.storyboard */,
+				90C3AAFF21F95CFB00EA7224 /* LaunchScreen.storyboard */,
+				90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		902A8EA721FFE9FE004E15EB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				90C3AAF821F95CF900EA7224 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		90C3AAEA21F95CF800EA7224 = {
 			isa = PBXGroup;
 			children = (
@@ -73,14 +103,11 @@
 		90C3AAF521F95CF900EA7224 /* Live broadcast_Project */ = {
 			isa = PBXGroup;
 			children = (
+				902A8EA721FFE9FE004E15EB /* Controller */,
+				902A8EA621FFE9F2004E15EB /* View */,
+				902A8EA521FFE9E9004E15EB /* Model */,
 				90C3AAF621F95CF900EA7224 /* AppDelegate.swift */,
-				90C3AAF821F95CF900EA7224 /* ViewController.swift */,
-				90C3AAFA21F95CF900EA7224 /* Main.storyboard */,
-				90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */,
-				90C3AAFF21F95CFB00EA7224 /* LaunchScreen.storyboard */,
 				90C3AB0221F95CFB00EA7224 /* Info.plist */,
-				90BC229021F9A80F0095F3BC /* API.swift */,
-				902A8E9F21FAA934004E15EB /* IDViewController.swift */,
 			);
 			path = "Live broadcast_Project";
 			sourceTree = "<group>";
@@ -231,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */,
+				902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */,
 				902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */,
 				90BC229121F9A80F0095F3BC /* API.swift in Sources */,
 				90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */,
