@@ -16,21 +16,23 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
     let myLoadingAnimation = MyNVActivityIndicator()
     var userDefault = UserDefaults.standard
     
+    //
     let idvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IDViewController")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //start animation
         myLoadingAnimation.startAnimating()
         reuseConfirm()
-        //start animation
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-  
+    
     @IBAction func LoginButton(_ sender: UIButton) {
         let manger = LoginManager()
         
-
+        
         manger.logIn(readPermissions: [.publicProfile], viewController: self) { (result) in
             if let accessToken = AccessToken.current {
                 print("access Token :\(accessToken)")
@@ -44,18 +46,18 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
             case .success(grantedPermissions: let grantedPermissions , declinedPermissions: let declinedPermissions, token: let token):
                 print(token.authenticationToken)
                 print(token.expirationDate)
-               
-                F
+                
+                
                 self.userDefault.setValue(token.authenticationToken, forKey: UserDefaultKeys.token)
                 
                 Request.postRequest(api: "/token", header: Headers.init(token: token.authenticationToken).header, expirationDate: token.expirationDate, callBack: { (callBack) in
                     DispatchQueue.main.async {
-                       
+                        
                         let json = try? JSON(data: callBack)
                         if let jsonResult = json!["result"].bool {
                             if jsonResult {
-//                               self.myLoadingAnimation.stopAnimating()
-//                                self.navigationController?.pushViewController(self.idvc, animated: true)
+                                //                               self.myLoadingAnimation.stopAnimating()
+                                //                                self.navigationController?.pushViewController(self.idvc, animated: true)
                                 self.reuseConfirm()
                             }
                         }
@@ -74,7 +76,7 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
         
         guard let userToken = userDefault.value(forKey: UserDefaultKeys.token) as? String  else {
             print("animation stop")
-            myLoadingAnimation.stopAnimation()
+            //            myLoadingAnimation.stopAnimation()
             return
         }
         
@@ -83,19 +85,12 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
             DispatchQueue.main.async {
                 do {
                     let json = try JSON(data: callBack)
-                    
-                    
-//                    json["result"].bool! ? self.navigationController?.pushViewController(self.idvc, animated: true) : self.errorAlert()
-                    
                     guard json["result"].bool! else {
-                        //stop animation
-                        self.stopAnimating()
-                        self.errorAlert()
+                        
+                        self.myLoadingAnimation.stopAnimating()
                         return
                     }
-                    //start snimation
-                    
-                    self.myLoadingAnimation.stopAnimating()
+                    self.myLoadingAnimation.stopAnimation()
                     self.navigationController?.pushViewController(self.idvc, animated: true)
                     
                 } catch {
@@ -108,7 +103,7 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
         
         
     }
-        
+    
 }
 
 extension ViewController {
@@ -120,8 +115,4 @@ extension ViewController {
         present(alertC, animated: true, completion: nil)
     }
 }
-    
-
-
-
 

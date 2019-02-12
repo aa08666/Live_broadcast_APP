@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8E9F21FAA934004E15EB /* IDViewController.swift */; };
 		902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */; };
+		9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */; };
 		90BC229121F9A80F0095F3BC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BC229021F9A80F0095F3BC /* API.swift */; };
 		90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3AAF621F95CF900EA7224 /* AppDelegate.swift */; };
 		90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C3AAF821F95CF900EA7224 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		902A8E9F21FAA934004E15EB /* IDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDViewController.swift; sourceTree = "<group>"; };
 		902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
+		9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerAddProductTableViewController.swift; sourceTree = "<group>"; };
 		90BC229021F9A80F0095F3BC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		90C3AAF321F95CF900EA7224 /* Live broadcast_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live broadcast_Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C3AAF621F95CF900EA7224 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		9087734D22114FF700AC752B /* Seller */ = {
+			isa = PBXGroup;
+			children = (
+				9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */,
+			);
+			path = Seller;
+			sourceTree = "<group>";
+		};
 		90C3AAEA21F95CF800EA7224 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		90C3AAF521F95CF900EA7224 /* Live broadcast_Project */ = {
 			isa = PBXGroup;
 			children = (
+				9087734D22114FF700AC752B /* Seller */,
 				902A8EA721FFE9FE004E15EB /* Controller */,
 				902A8EA621FFE9F2004E15EB /* View */,
 				902A8EA521FFE9E9004E15EB /* Model */,
@@ -259,6 +270,7 @@
 			files = (
 				90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */,
 				902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */,
+				9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */,
 				902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */,
 				90BC229121F9A80F0095F3BC /* API.swift in Sources */,
 				90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */,
