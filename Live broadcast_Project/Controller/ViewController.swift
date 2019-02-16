@@ -16,7 +16,7 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
     let myLoadingAnimation = MyNVActivityIndicator()
     var userDefault = UserDefaults.standard
     
-    //
+  
     let idvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IDViewController")
     
     override func viewDidLoad() {
@@ -24,8 +24,6 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
         //start animation
         myLoadingAnimation.startAnimating()
         reuseConfirm()
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     

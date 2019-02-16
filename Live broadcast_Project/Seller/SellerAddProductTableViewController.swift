@@ -7,11 +7,55 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+var userDefault1 = UserDefaults.standard
 
 class SellerAddProductTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+   
+    @IBOutlet weak var productName: UITextField!
     
-    @IBOutlet weak var productPhoto: UIImageView!
+    @IBOutlet weak var productDescription: UITextField!
+    
+    @IBOutlet weak var productStock: UITextField!
+    
+    @IBOutlet weak var productCost: UITextField!
+    
+    @IBOutlet weak var productPrice: UITextField!
+    
+    @IBOutlet weak var productImageView: UIImageView!
+    
+    
+    // 設一個 Button 裡面 Call function(推送商品資料到商品列表中)
+    
+    
+    
+    @IBAction func createProductButton(_ sender: UIButton){
+        guard let image = productImageView.image else { return }
+        guard let name = productName.text else { return }
+        guard let description = productDescription.text else { return }
+        guard let stock = productStock.text else { return }
+        guard let cost = productCost.text else { return }
+        guard let price = productPrice.text else { return }
+        
+        AddNewItem().uploadProduct(image, name, description, stock, productCost: cost, price) { (data) in
+            do {
+                let json = try JSON(data: data)
+                guard let result = json["result"].bool else { return }
+                
+                if result {
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        }
+    }
+    
     
     @IBAction func addProductPhoto(_ sender: UIButton) {
         let imagePickerVC = UIImagePickerController()
@@ -43,10 +87,11 @@ class SellerAddProductTableViewController: UITableViewController, UINavigationCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 3 {
+        if indexPath.row == 5 {
             let imagePickerVC = UIImagePickerController()
             
             // 設定相片的來源為行動裝置的相本

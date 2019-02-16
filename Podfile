@@ -11,4 +11,5 @@ target 'Live broadcast_Project' do
 	pod 'FacebookShare'
         pod 'SwiftyJSON'
         pod 'NVActivityIndicatorView'
+        pod 'Alamofire', '~> 5.0.0-beta.2'
 end
