@@ -17,6 +17,8 @@
 		90C3AAFC21F95CF900EA7224 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFA21F95CF900EA7224 /* Main.storyboard */; };
 		90C3AAFE21F95CFB00EA7224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */; };
 		90C3AB0121F95CFB00EA7224 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C3AAFF21F95CFB00EA7224 /* LaunchScreen.storyboard */; };
+		90EFE7542217D9F600D3B377 /* ProductListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EFE7532217D9F600D3B377 /* ProductListTableViewController.swift */; };
+		90EFE7562217EFB200D3B377 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EFE7552217EFB200D3B377 /* ProductListTableViewCell.swift */; };
 		AE91A0775EA72EE06CD525B9 /* Pods_Live_broadcast_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2039C9D890BD764135B6ED /* Pods_Live_broadcast_Project.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		90C3AAFD21F95CFB00EA7224 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90C3AB0021F95CFB00EA7224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90C3AB0221F95CFB00EA7224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90EFE7532217D9F600D3B377 /* ProductListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewController.swift; sourceTree = "<group>"; };
+		90EFE7552217EFB200D3B377 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
 		9196450F1F7EA587514CD2DA /* Pods-Live broadcast_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live broadcast_Project.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live broadcast_Project/Pods-Live broadcast_Project.release.xcconfig"; sourceTree = "<group>"; };
 		AD2039C9D890BD764135B6ED /* Pods_Live_broadcast_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_broadcast_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517F970120B66EB13E35570 /* Pods-Live broadcast_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live broadcast_Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live broadcast_Project/Pods-Live broadcast_Project.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 			children = (
 				9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */,
 				906AC3BF22140460006B3831 /* addNewItems.swift */,
+				90EFE7532217D9F600D3B377 /* ProductListTableViewController.swift */,
+				90EFE7552217EFB200D3B377 /* ProductListTableViewCell.swift */,
 			);
 			path = Seller;
 			sourceTree = "<group>";
@@ -278,7 +284,9 @@
 				902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */,
 				9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */,
 				902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */,
+				90EFE7542217D9F600D3B377 /* ProductListTableViewController.swift in Sources */,
 				90BC229121F9A80F0095F3BC /* API.swift in Sources */,
+				90EFE7562217EFB200D3B377 /* ProductListTableViewCell.swift in Sources */,
 				90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

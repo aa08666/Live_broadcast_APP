@@ -11,9 +11,7 @@ import Alamofire
 
 
 
-// Alamofire
-// strcut SaveItem
-// 新增商品後按 Save，推送資料到後台， 在傳到 List 中
+
 var userDefault = UserDefaults.standard
 
 struct Url {
@@ -29,7 +27,7 @@ struct AddNewItem {
         
         guard let token = UserDefaults.standard.value(forKeyPath: UserDefaultKeys.token) as? String else { return }
         
-        //        let token = UserDefaults.standard.value(forKeyPath: UserDefaultKeys.token) as? String
+       
         
         let boundary = "Boundary+(\(arc4random())\(arc4random()))"
         let imageData = image.jpegData(compressionQuality: 0.2)

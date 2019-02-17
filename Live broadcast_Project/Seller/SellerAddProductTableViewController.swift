@@ -12,6 +12,8 @@ import SwiftyJSON
 var userDefault1 = UserDefaults.standard
 
 class SellerAddProductTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    let imagePickerVC = UIImagePickerController()
    
     @IBOutlet weak var productName: UITextField!
     
@@ -26,10 +28,10 @@ class SellerAddProductTableViewController: UITableViewController, UINavigationCo
     @IBOutlet weak var productImageView: UIImageView!
     
     
-    // 設一個 Button 裡面 Call function(推送商品資料到商品列表中)
     
     
     
+    // 設一個 Button 裡面 Call AddNewItem 這個 function (推送商品資料到商品列表中)
     @IBAction func createProductButton(_ sender: UIButton){
         guard let image = productImageView.image else { return }
         guard let name = productName.text else { return }
@@ -79,9 +81,18 @@ class SellerAddProductTableViewController: UITableViewController, UINavigationCo
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.originalImage] as! UIImage
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        dismiss(animated: true, completion: nil)
+        if let image = info[.originalImage] as? UIImage {
+            switch imagePickerVC.sourceType {
+            case .camera:
+                break
+            case .photoLibrary:
+                productImageView.image = image
+            default:
+                break
+            }
+
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     
@@ -92,7 +103,7 @@ class SellerAddProductTableViewController: UITableViewController, UINavigationCo
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 5 {
-            let imagePickerVC = UIImagePickerController()
+            
             
             // 設定相片的來源為行動裝置的相本
             imagePickerVC.sourceType = .photoLibrary
@@ -120,11 +131,4 @@ class SellerAddProductTableViewController: UITableViewController, UINavigationCo
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-//    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        <#code#>
-//    }
-//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        <#code#>
-//    }
-//}
 }

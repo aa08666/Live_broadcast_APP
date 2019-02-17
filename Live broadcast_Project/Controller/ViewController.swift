@@ -78,11 +78,11 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
             return
         }
         
-        Request.getRequest(api: "/users", header: Headers.init(token: userToken).header) { (callBack) in
+        Request.getRequest(api: "/users", header: Headers.init(token: userToken).header) { (data, statusCode) in
             
             DispatchQueue.main.async {
                 do {
-                    let json = try JSON(data: callBack)
+                    let json = try JSON(data: data)
                     guard json["result"].bool! else {
                         
                         self.myLoadingAnimation.stopAnimating()
