@@ -633,10 +633,10 @@
             </objects>
             <point key="canvasLocation" x="2864.8000000000002" y="759.67016491754134"/>
         </scene>
-        <!--View Controller-->
+        <!--Start Live View Controller-->
         <scene sceneID="ooS-Bn-5sp">
             <objects>
-                <viewController id="NJb-pY-igf" sceneMemberID="viewController">
+                <viewController id="NJb-pY-igf" customClass="StartLiveViewController" customModule="Live_broadcast_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BcW-Em-3gU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -693,6 +693,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ert-cW-qvP">
+                                <rect key="frame" x="188" y="617" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="開始直播"/>
+                                <connections>
+                                    <action selector="startLiveButton:" destination="NJb-pY-igf" eventType="touchUpInside" id="Ipn-zR-WVx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TR-tF-qA9">
+                                <rect key="frame" x="292" y="617" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="turnOffStream:" destination="NJb-pY-igf" eventType="touchUpInside" id="gFd-fc-WkG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="DxB-jV-bbp"/>

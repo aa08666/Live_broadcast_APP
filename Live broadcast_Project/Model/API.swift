@@ -48,7 +48,7 @@ struct Request {
         task.resume()
         }
     
-    // POST
+
     static func postRequest(api:String, header:[String:String], expirationDate:Date,callBack: @escaping (Data) -> Void){
         
         let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api)!

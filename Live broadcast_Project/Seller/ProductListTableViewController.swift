@@ -112,13 +112,17 @@ class ProductListTableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
-            // call DELETE 方法的 Func 加上 body
+        let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, sourceView, completionHandler) in
+            
             self.deleteProductList(self.header, indexPath.row, { (statusCode) in
                 switch statusCode {
                 case 200:
-                    self.tableView.deleteRows(at: [indexPath], with: .fade)
-                    self.items.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        self.items.remove(at: indexPath.row)
+                        self.tableView.deleteRows(at: [indexPath], with: .fade)
+//                        self.tableView.reloadData()
+                    }
+                    print("success")
                 case 400:
                         print("Invalid parameters")
                 case 401:
@@ -128,22 +132,23 @@ class ProductListTableViewController: UITableViewController {
                 }
             })
             
+            
             completionHandler(true)
-           
         }
+        deleteAction.backgroundColor = .red
         let swipeActionConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeActionConfiguration
         
     }
     
     func deleteProductList (_ header:[String:String], _ row: Int, _ callBack: @escaping (Int) -> Void) {
-        
+        // 把 body 處理成後端開的格式
         let body: [String: Any] = ["items": [items[row].id]]
-        Request.deleteRequest(api: "/item", header: header, body: body ) { (data, statusCode) in
+        Request.deleteRequest(api: "/items", header: header, body: body ) { (data, statusCode) in
             callBack(statusCode)
         }
     }
-    
+    //TODOLIS： 1. 查 escaping 用法 2.查 callBack 用法 3. URLRequest 深入了解
 
 }
 
