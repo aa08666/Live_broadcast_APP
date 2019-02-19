@@ -6,6 +6,7 @@
 //  Copyright © 2019 柏呈. All rights reserved.
 //
 
+ //TODOLIS： 1. 查 escaping 用法 2.查 callBack 用法 3. URLRequest 深入了解
 import UIKit
 import SwiftyJSON
 
@@ -110,6 +111,69 @@ class ProductListTableViewController: UITableViewController {
         
         return cell
     }
+    
+    func pushItemsRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void) {
+        
+        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        for headers in header {
+            urlRequest.addValue(headers.value, forHTTPHeaderField: headers.key)
+        }
+        urlRequest.httpMethod = "POST"
+        do {
+            // 這隻 api 沒 body 所以這邊解析做了處理
+            let bodys = try JSONSerialization.data(withJSONObject: (Any).self, options: JSONSerialization.WritingOptions())
+            urlRequest.httpBody = bodys
+            
+            let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                
+                guard error == nil else { return }
+                guard let httpUrlResponse = response as? HTTPURLResponse else { return }
+                guard let data = data else { return }
+                
+                
+                callBack(data, httpUrlResponse.statusCode)
+            }
+            task.resume()
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let pushAction = UIContextualAction(style: .normal, title: "Push") { (action, sourceView, completionHandler) in
+            
+            self.pushItemsRequest(api: "streaming-items/2", header: self.header, callBack: { (data, statusCode) in
+                do{
+                    let json = try JSON(data: data)
+                    switch statusCode {
+                    case 200:
+                        DispatchQueue.main.async {
+                        guard let result = json["result"].bool else { return }
+                        guard let response = json["response"].string else { return }
+                            
+                        }
+                    case 400:
+                        break
+                    case 401:
+                        break
+                    default:
+                        break
+                    }
+                }catch{
+                    
+                }
+                
+                
+            })
+            completionHandler(true)
+        }
+        let swipeActionConfiguration  = UISwipeActionsConfiguration(actions: [pushAction])
+        return swipeActionConfiguration
+    }
+    
  
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { (action, sourceView, completionHandler) in
@@ -148,7 +212,7 @@ class ProductListTableViewController: UITableViewController {
             callBack(statusCode)
         }
     }
-    //TODOLIS： 1. 查 escaping 用法 2.查 callBack 用法 3. URLRequest 深入了解
+   
 
 }
 

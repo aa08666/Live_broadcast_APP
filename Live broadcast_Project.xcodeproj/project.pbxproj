@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9028917F221BA85900591264 /* GetStreamingItemsInformation .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028917E221BA85900591264 /* GetStreamingItemsInformation .swift */; };
 		902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8E9F21FAA934004E15EB /* IDViewController.swift */; };
 		902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */; };
 		906AC3C022140460006B3831 /* addNewItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AC3BF22140460006B3831 /* addNewItems.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9028917E221BA85900591264 /* GetStreamingItemsInformation .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GetStreamingItemsInformation .swift"; sourceTree = "<group>"; };
 		902A8E9F21FAA934004E15EB /* IDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDViewController.swift; sourceTree = "<group>"; };
 		902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		906AC3BF22140460006B3831 /* addNewItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewItems.swift; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 				AD2039C9D890BD764135B6ED /* Pods_Live_broadcast_Project.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9028917D221BA78D00591264 /* Buyer */ = {
+			isa = PBXGroup;
+			children = (
+				9028917E221BA85900591264 /* GetStreamingItemsInformation .swift */,
+			);
+			path = Buyer;
 			sourceTree = "<group>";
 		};
 		902A8EA521FFE9E9004E15EB /* Model */ = {
@@ -125,6 +135,7 @@
 		90C3AAF521F95CF900EA7224 /* Live broadcast_Project */ = {
 			isa = PBXGroup;
 			children = (
+				9028917D221BA78D00591264 /* Buyer */,
 				9087734D22114FF700AC752B /* Seller */,
 				902A8EA721FFE9FE004E15EB /* Controller */,
 				902A8EA621FFE9F2004E15EB /* View */,
@@ -285,6 +296,7 @@
 				90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */,
 				906AC3C022140460006B3831 /* addNewItems.swift in Sources */,
 				902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */,
+				9028917F221BA85900591264 /* GetStreamingItemsInformation .swift in Sources */,
 				9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */,
 				902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */,
 				90EFE75C221A52BA00D3B377 /* StartLiveViewController.swift in Sources */,

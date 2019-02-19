@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+var isStream = Bool()
 
 class StartLiveViewController: UIViewController {
     
@@ -16,14 +17,17 @@ class StartLiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var endButton: UIButton!
+    
+    // 結束直播
     @IBAction func turnOffStream(_ sender: UIButton){
         putRequest(api: "/users-channel-id", header: header) { (data, statusCode) in
             if statusCode == 200 {
                 print(statusCode)
-                
+//                self.endButton.changeButtonStatus(&self.startButton)
             } else {
                 do {
                     let json = try JSON(data: data)
@@ -40,6 +44,7 @@ class StartLiveViewController: UIViewController {
         }
     }
     
+    // PUT
     func putRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
         guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
         var urlRequest = URLRequest(url: url)
@@ -60,9 +65,9 @@ class StartLiveViewController: UIViewController {
     }
     
     @IBAction func startLiveButton(_ sender: UIButton) {
-       let alert = UIAlertController(title: "Start your Chanel ID", message: "Please type your Chanel ID and TOKEN", preferredStyle: .alert)
+       let alert = UIAlertController(title: "Start your Channel ID", message: "Please type your Channel ID and TOKEN", preferredStyle: .alert)
         alert.addTextField { (textfield) in
-            textfield.placeholder = "Chanel ID"
+            textfield.placeholder = "Channel ID"
         }
         alert.addTextField { (textField: UITextField) in
             textField.placeholder = "Chanel token"
@@ -77,8 +82,10 @@ class StartLiveViewController: UIViewController {
             let body:[String:Any] =
                 ["iFrame": iframeText,"channel_description": chanelDescription]
             self.startLive(self.header, body, callback: { (result, chanelToken) in
-                print(result)
-                print(chanelToken)
+//                isStream = true
+//                self.startButton.changeButtonStatus(&self.endButton)
+//            self.title = chanelToken
+                
             })
             
             
@@ -101,8 +108,8 @@ class StartLiveViewController: UIViewController {
                     guard let jsonResponse = json["response"].dictionary else { return }
                     guard let channelId = jsonResponse["channel_id"]?.string else { return }
                     guard let channelToken = jsonResponse["channel_token"]?.string else { return }
-                    print(channelId)
-                    print(channelToken)
+                  
+                    
                     
                 }catch{
                     print(error.localizedDescription)
@@ -118,7 +125,8 @@ class StartLiveViewController: UIViewController {
     }
     
 
-    func StartLiveStreamRequest(api:String, header:[String:String], body:[String:Any], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
+    func StartLiveStreamRequest(api:String, header:[String:String], body:[String:Any], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void) {
+        
         guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
         var urlRequest = URLRequest(url: url)
         
@@ -145,6 +153,17 @@ class StartLiveViewController: UIViewController {
         }
         
     }
+    
+    
 }
-
+// 讓開始直播時，使用者不能點再次點選，結束直播也是。
+extension UIButton {
+    func changeButtonStatus( _ button: inout UIButton) {
+        self.isEnabled = false
+        self.alpha = 0.5
+        button.isEnabled = true
+        button.alpha = 1.0
+    }
+    
+}
 
