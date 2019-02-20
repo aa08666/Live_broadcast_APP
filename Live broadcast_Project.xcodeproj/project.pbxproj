@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9028917F221BA85900591264 /* GetStreamingItemsInformation .swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028917E221BA85900591264 /* GetStreamingItemsInformation .swift */; };
+		90289183221D34C500591264 /* PlaceAnOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90289182221D34C500591264 /* PlaceAnOrder.swift */; };
 		902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8E9F21FAA934004E15EB /* IDViewController.swift */; };
 		902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */; };
+		906178F5221D7F9500430523 /* JoinALiveStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906178F4221D7F9500430523 /* JoinALiveStreamViewController.swift */; };
+		906178F7221D8A6600430523 /* AddRecipientAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906178F6221D8A6600430523 /* AddRecipientAddressViewController.swift */; };
 		906AC3C022140460006B3831 /* addNewItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AC3BF22140460006B3831 /* addNewItems.swift */; };
 		9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */; };
 		90BC229121F9A80F0095F3BC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BC229021F9A80F0095F3BC /* API.swift */; };
@@ -26,8 +29,11 @@
 
 /* Begin PBXFileReference section */
 		9028917E221BA85900591264 /* GetStreamingItemsInformation .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GetStreamingItemsInformation .swift"; sourceTree = "<group>"; };
+		90289182221D34C500591264 /* PlaceAnOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnOrder.swift; sourceTree = "<group>"; };
 		902A8E9F21FAA934004E15EB /* IDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDViewController.swift; sourceTree = "<group>"; };
 		902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
+		906178F4221D7F9500430523 /* JoinALiveStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinALiveStreamViewController.swift; sourceTree = "<group>"; };
+		906178F6221D8A6600430523 /* AddRecipientAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipientAddressViewController.swift; sourceTree = "<group>"; };
 		906AC3BF22140460006B3831 /* addNewItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewItems.swift; sourceTree = "<group>"; };
 		9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerAddProductTableViewController.swift; sourceTree = "<group>"; };
 		90BC229021F9A80F0095F3BC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -70,6 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				9028917E221BA85900591264 /* GetStreamingItemsInformation .swift */,
+				90289182221D34C500591264 /* PlaceAnOrder.swift */,
+				906178F4221D7F9500430523 /* JoinALiveStreamViewController.swift */,
+				906178F6221D8A6600430523 /* AddRecipientAddressViewController.swift */,
 			);
 			path = Buyer;
 			sourceTree = "<group>";
@@ -293,17 +302,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				906178F5221D7F9500430523 /* JoinALiveStreamViewController.swift in Sources */,
 				90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */,
 				906AC3C022140460006B3831 /* addNewItems.swift in Sources */,
 				902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */,
 				9028917F221BA85900591264 /* GetStreamingItemsInformation .swift in Sources */,
 				9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */,
+				90289183221D34C500591264 /* PlaceAnOrder.swift in Sources */,
 				902A8EA021FAA934004E15EB /* IDViewController.swift in Sources */,
 				90EFE75C221A52BA00D3B377 /* StartLiveViewController.swift in Sources */,
 				90EFE7542217D9F600D3B377 /* ProductListTableViewController.swift in Sources */,
 				90BC229121F9A80F0095F3BC /* API.swift in Sources */,
 				90EFE7562217EFB200D3B377 /* ProductListTableViewCell.swift in Sources */,
 				90C3AAF721F95CF900EA7224 /* AppDelegate.swift in Sources */,
+				906178F7221D8A6600430523 /* AddRecipientAddressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

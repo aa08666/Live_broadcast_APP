@@ -20,12 +20,22 @@ class GetStreamingItemsInformation: UIViewController {
     @IBOutlet weak var getitemImageView: UIImageView!
     let header = Headers.init(token: UserDefaults.standard.value(forKey: UserDefaultKeys.token) as! String).header
     
+    
+    @IBAction func placeAnOrderButton(_ sender: UIButton) {
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        analysis(header)
+    }
+    
     @IBAction func getItemInformationButton(_ sender: UIButton) {
             analysis(header)
         
         
     }
     
+    var showImage = UIImage()
     func analysis( _ header: [String:String]) {
         
         Request.getRequest(api: "/streaming-items", header: header) { (data, statusCode) in
@@ -37,8 +47,13 @@ class GetStreamingItemsInformation: UIViewController {
                 guard let unitPrice = json["response"]["unit_price"].int else { return }
                 guard let remaningQuantity = json["response"]["remaining_quantity"].int else { return }
                 guard let soldQuantity = json["response"]["sold_quantity"].int else { return }
-                guard let image = json["response"]["image"].string else { return }
-                guard let itemImage = image.downloadImage() else { return }
+                if let imageUrl = json["response"]["image"].string {
+                    if let image = imageUrl.downloadImage() {
+                        self.showImage = image
+                    } else {
+                        self.showImage =  UIImage(named: "icons8-camera")!
+                    }
+                }
                 
                 DispatchQueue.main.async {
                     self.getItemNameLabel.text = name
@@ -46,6 +61,7 @@ class GetStreamingItemsInformation: UIViewController {
                     self.getItemUnitPrice.text = String(unitPrice)
                     self.getItemRemaningQuantityLabel.text = String(remaningQuantity)
                     self.getItemSoldQuantityLabel.text = String(soldQuantity)
+                    self.getitemImageView.image = self.showImage
                 }
                
                 
@@ -72,43 +88,3 @@ class GetStreamingItemsInformation: UIViewController {
 
 
 
-
-//struct GetItemInformation {
-//
-//    func uploadProduct(_ itemImage: UIImage, _ name: String, _ description: String, _ remaningQuantity: String, soldQuantity: String, _ unitPrice: String, _ callBack: @escaping (Data) -> Void) {
-//
-//        guard let token = UserDefaults.standard.value(forKeyPath: UserDefaultKeys.token) as? String else { return }
-//
-//
-//
-////        let boundary = "Boundary+(\(arc4random())\(arc4random()))"
-//        let imageData = itemImage.jpegData(compressionQuality: 0.2)
-//
-//
-//
-//        let body: [String:Any] = [
-//            "name": name,
-//            "description": description,
-//            "remaining_quantity": remaningQuantity,
-//            "sold_quantity": soldQuantity,
-//            "unit_price": unitPrice,
-//            "image": itemImage
-//        ]
-//
-//        AF.upload(multipartFormData: { (multipart) in
-//            multipart.append(imageData!, withName: "image", fileName: name, mimeType: "image/jpeg")
-//            for (key, value) in body {
-//                multipart.append(value.data(using: String.Encoding.utf8)!, withName: key)
-//            }
-//        },usingThreshold: UInt64.init(), to: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api/items" , method: .post, headers: header).responseJSON { (reponse) in
-//            if reponse.result.isSuccess {
-//                if let data = reponse.data {
-//                    callBack(data)
-//                }
-//            }
-//        }
-//    }
-//
-//
-//
-//}
