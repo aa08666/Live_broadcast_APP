@@ -112,7 +112,7 @@ class ProductListTableViewController: UITableViewController {
         return cell
     }
     
-    func pushItemsRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void) {
+    func pushItemsRequest(api:String, header:[String:String], body:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void) {
         
         guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
         var urlRequest = URLRequest(url: url)
@@ -122,9 +122,9 @@ class ProductListTableViewController: UITableViewController {
         }
         urlRequest.httpMethod = "POST"
         do {
-            // 這隻 api 沒 body 所以這邊解析做了處理
-            let bodys = try JSONSerialization.data(withJSONObject: (Any).self, options: JSONSerialization.WritingOptions())
-            urlRequest.httpBody = bodys
+            
+//            let bodys = try JSONSerialization.data(withJSONObject: body, options: JSONSerialization.WritingOptions())
+//            urlRequest.httpBody = bodys
             
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 
@@ -145,25 +145,22 @@ class ProductListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let pushAction = UIContextualAction(style: .normal, title: "Push") { (action, sourceView, completionHandler) in
             
-            self.pushItemsRequest(api: "streaming-items/2", header: self.header, callBack: { (data, statusCode) in
+            self.pushItemsRequest(api: "/streaming-items/\(self.items[indexPath.row].id)", header: self.header, body: [:], callBack: { (data, statusCode) in
                 do{
                     let json = try JSON(data: data)
                     switch statusCode {
                     case 200:
-                        DispatchQueue.main.async {
                         guard let result = json["result"].bool else { return }
                         guard let response = json["response"].string else { return }
-                            
-                        }
                     case 400:
-                        break
+                        print(statusCode)
                     case 401:
-                        break
+                        print(statusCode)
                     default:
-                        break
+                        print(statusCode)
                     }
                 }catch{
-                    
+                   print(error.localizedDescription)
                 }
                 
                 

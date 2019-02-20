@@ -19,6 +19,7 @@ class GetStreamingItemsInformation: UIViewController {
     @IBOutlet weak var getItemUnitPrice: UILabel!
     @IBOutlet weak var getitemImageView: UIImageView!
     let header = Headers.init(token: UserDefaults.standard.value(forKey: UserDefaultKeys.token) as! String).header
+    
     @IBAction func getItemInformationButton(_ sender: UIButton) {
             analysis(header)
         
@@ -38,11 +39,15 @@ class GetStreamingItemsInformation: UIViewController {
                 guard let soldQuantity = json["response"]["sold_quantity"].int else { return }
                 guard let image = json["response"]["image"].string else { return }
                 guard let itemImage = image.downloadImage() else { return }
-                self.getItemNameLabel.text = name
-                self.getItemDescription.text = description
-                self.getItemUnitPrice.text = unitPrice as? String
-                self.getItemRemaningQuantityLabel.text = remaningQuantity as? String
-                self.getItemSoldQuantityLabel.text = soldQuantity as? String
+                
+                DispatchQueue.main.async {
+                    self.getItemNameLabel.text = name
+                    self.getItemDescription.text = description
+                    self.getItemUnitPrice.text = String(unitPrice)
+                    self.getItemRemaningQuantityLabel.text = String(remaningQuantity)
+                    self.getItemSoldQuantityLabel.text = String(soldQuantity)
+                }
+               
                 
                 
                 
@@ -51,7 +56,7 @@ class GetStreamingItemsInformation: UIViewController {
                 
                 if result {
                     DispatchQueue.main.async {
-//                        self.navigationController?.popViewController(animated: true)
+
                     }
                     
                 }

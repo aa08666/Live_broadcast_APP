@@ -27,6 +27,9 @@ class StartLiveViewController: UIViewController {
         putRequest(api: "/users-channel-id", header: header) { (data, statusCode) in
             if statusCode == 200 {
                 print(statusCode)
+                DispatchQueue.main.async {
+                    self.title = nil
+                }
 //                self.endButton.changeButtonStatus(&self.startButton)
             } else {
                 do {
@@ -82,6 +85,12 @@ class StartLiveViewController: UIViewController {
             let body:[String:Any] =
                 ["iFrame": iframeText,"channel_description": chanelDescription]
             self.startLive(self.header, body, callback: { (result, chanelToken) in
+                if result {
+                    DispatchQueue.main.async {
+                        self.title = chanelToken
+                    }
+                    
+                }
 //                isStream = true
 //                self.startButton.changeButtonStatus(&self.endButton)
 //            self.title = chanelToken
@@ -106,11 +115,11 @@ class StartLiveViewController: UIViewController {
                     let json = try JSON.init(data: data)
                     guard let result = json["result"].bool else { return }
                     guard let jsonResponse = json["response"].dictionary else { return }
-                    guard let channelId = jsonResponse["channel_id"]?.string else { return }
+                    guard let channelId = jsonResponse["channel_id"]?.int else { return }
                     guard let channelToken = jsonResponse["channel_token"]?.string else { return }
                   
                     
-                    
+                    callback(result, channelToken)
                 }catch{
                     print(error.localizedDescription)
                 }
