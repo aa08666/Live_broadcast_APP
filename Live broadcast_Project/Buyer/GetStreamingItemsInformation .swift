@@ -12,6 +12,8 @@ import Alamofire
 
 class GetStreamingItemsInformation: UIViewController {
     
+    var timer: Timer?
+    
     @IBOutlet weak var getItemNameLabel: UILabel!
     @IBOutlet weak var getItemDescription: UILabel!
     @IBOutlet weak var getItemRemaningQuantityLabel: UILabel!
@@ -26,19 +28,22 @@ class GetStreamingItemsInformation: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        analysis(header)
+        timeInterval(&self.timer, self, 3)
+
     }
     
     @IBAction func getItemInformationButton(_ sender: UIButton) {
-            analysis(header)
-        
         
     }
     
+    func timeInterval(_ timer: inout Timer?, _ target: UIViewController, _ timeInterval: TimeInterval){
+        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: target, selector: #selector(analysis), userInfo: nil, repeats: true)
+    }
+    
     var showImage = UIImage()
-    func analysis( _ header: [String:String]) {
+    @objc func analysis() {
         
-        Request.getRequest(api: "/streaming-items", header: header) { (data, statusCode) in
+        Request.getRequest(api: "/streaming-items", header: self.header) { (data, statusCode) in
             do {
                 let json = try JSON(data: data)
                 guard let result = json["result"].bool else { return }
