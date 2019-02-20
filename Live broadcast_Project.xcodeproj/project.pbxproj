@@ -13,6 +13,7 @@
 		902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */; };
 		906178F5221D7F9500430523 /* JoinALiveStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906178F4221D7F9500430523 /* JoinALiveStreamViewController.swift */; };
 		906178F7221D8A6600430523 /* AddRecipientAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906178F6221D8A6600430523 /* AddRecipientAddressViewController.swift */; };
+		906178F9221DB85300430523 /* AddRecipientAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906178F8221DB85300430523 /* AddRecipientAddressTableViewController.swift */; };
 		906AC3C022140460006B3831 /* addNewItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906AC3BF22140460006B3831 /* addNewItems.swift */; };
 		9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */; };
 		90BC229121F9A80F0095F3BC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BC229021F9A80F0095F3BC /* API.swift */; };
@@ -34,6 +35,7 @@
 		902A8EA321FFE580004E15EB /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		906178F4221D7F9500430523 /* JoinALiveStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinALiveStreamViewController.swift; sourceTree = "<group>"; };
 		906178F6221D8A6600430523 /* AddRecipientAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipientAddressViewController.swift; sourceTree = "<group>"; };
+		906178F8221DB85300430523 /* AddRecipientAddressTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipientAddressTableViewController.swift; sourceTree = "<group>"; };
 		906AC3BF22140460006B3831 /* addNewItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewItems.swift; sourceTree = "<group>"; };
 		9087734B22114FE900AC752B /* SellerAddProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerAddProductTableViewController.swift; sourceTree = "<group>"; };
 		90BC229021F9A80F0095F3BC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				90289182221D34C500591264 /* PlaceAnOrder.swift */,
 				906178F4221D7F9500430523 /* JoinALiveStreamViewController.swift */,
 				906178F6221D8A6600430523 /* AddRecipientAddressViewController.swift */,
+				906178F8221DB85300430523 /* AddRecipientAddressTableViewController.swift */,
 			);
 			path = Buyer;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				90C3AAF921F95CF900EA7224 /* ViewController.swift in Sources */,
 				906AC3C022140460006B3831 /* addNewItems.swift in Sources */,
 				902A8EA421FFE580004E15EB /* NVActivityIndicatorView.swift in Sources */,
+				906178F9221DB85300430523 /* AddRecipientAddressTableViewController.swift in Sources */,
 				9028917F221BA85900591264 /* GetStreamingItemsInformation .swift in Sources */,
 				9087734C22114FE900AC752B /* SellerAddProductTableViewController.swift in Sources */,
 				90289183221D34C500591264 /* PlaceAnOrder.swift in Sources */,
