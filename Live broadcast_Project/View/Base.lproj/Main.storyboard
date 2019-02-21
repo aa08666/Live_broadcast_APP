@@ -533,7 +533,6 @@
                                 <state key="normal" title="Button" image="icons8-todo_list"/>
                                 <connections>
                                     <action selector="addAddressButton:" destination="QgM-bR-E3c" eventType="touchUpInside" id="NzC-s6-VSE"/>
-                                    <segue destination="maf-zK-GNF" kind="show" id="zpZ-lL-aCd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -555,10 +554,10 @@
             </objects>
             <point key="canvasLocation" x="4416.8000000000002" y="-7.6461769115442282"/>
         </scene>
-        <!--Add Recipient Address View Controller-->
+        <!--View Controller-->
         <scene sceneID="tGz-cb-Bvv">
             <objects>
-                <viewController id="maf-zK-GNF" customClass="AddRecipientAddressViewController" customModule="Live_broadcast_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="maf-zK-GNF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lMm-Km-62t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -719,16 +718,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zDd-yR-m60"/>
                     </view>
-                    <connections>
-                        <outlet property="cityLabel" destination="0tk-pc-mQp" id="gRA-MZ-qpv"/>
-                        <outlet property="countryCodeLabel" destination="Ur3-sQ-JgK" id="tDc-oe-PBa"/>
-                        <outlet property="districtLabel" destination="USC-g3-wGM" id="lAj-yd-Z96"/>
-                        <outlet property="nameLabel" destination="1aH-Od-9bb" id="5mk-6B-mzx"/>
-                        <outlet property="othersLabel" destination="VJX-b1-h3a" id="xmG-sZ-pEd"/>
-                        <outlet property="phoneCodeLabel" destination="9YU-2O-Y06" id="Q5B-Id-CdO"/>
-                        <outlet property="phoneNumberLabel" destination="gs9-YX-1dC" id="dba-Sy-v7Z"/>
-                        <outlet property="postCodeLabel" destination="jKL-v8-3Ym" id="vPA-TG-isg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvJ-NM-P6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -21,15 +21,7 @@ class AddRecipientAddressViewController: UIViewController {
     @IBOutlet weak var othersTextField: UITextField!
     
     
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var phoneCodeLabel: UILabel!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
-    @IBOutlet weak var countryCodeLabel: UILabel!
-    @IBOutlet weak var postCodeLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var districtLabel: UILabel!
-    @IBOutlet weak var othersLabel: UILabel!
+
     
     
     
@@ -38,6 +30,7 @@ class AddRecipientAddressViewController: UIViewController {
     
     
     @IBAction func addAddressButton(_ sender: UIButton) {
+        
         guard let name = nameTextField.text else { return }
         guard let phoneCode = phoneCodeTextField.text else { return  }
         guard let phoneNumber = phoneNumberTextField.text else { return  }
@@ -46,6 +39,14 @@ class AddRecipientAddressViewController: UIViewController {
         guard let city = cityTextField.text else { return  }
         guard let district = districtTextField.text else { return  }
         guard let others = othersTextField.text else { return  }
+        guard let postCodeInt = Int(postCode) else { return  }
+        let alert = UIAlertController(title: "新增商品", message: "你已新增成功", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
         
         
         
@@ -53,7 +54,7 @@ class AddRecipientAddressViewController: UIViewController {
             "name":name,
             "phone":
                 ["phone_code":phoneCode,"phone_number":phoneNumber],
-            "address":["country_code":countryCode,"post_code":postCode,"city":city,"district":district,"others":others]
+            "address":["country_code":countryCode,"post_code":postCodeInt,"city":city,"district":district,"others":others]
         ]
         
         self.addRecipientAddressRequest(api: "/recipients", header: header, body: body) { (data, statusCode) in
@@ -62,7 +63,7 @@ class AddRecipientAddressViewController: UIViewController {
                 switch statusCode {
                 case 200:
                     guard let result = json["result"].bool else {return}
-                    
+                    self.present(alert, animated: true, completion: nil)
                 case 400:
                     print(statusCode)
                 case 401:
@@ -76,14 +77,7 @@ class AddRecipientAddressViewController: UIViewController {
             }
         }
         
-        nameLabel.text = name
-        phoneCodeLabel.text = phoneCode
-        phoneNumberLabel.text = phoneNumber
-        countryCodeLabel.text = countryCode
-        postCodeLabel.text = postCode
-        cityLabel.text = city
-        districtLabel.text = district
-        othersLabel.text = others
+        
         
     }
     
