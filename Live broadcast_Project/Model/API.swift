@@ -107,5 +107,25 @@ struct Request {
             print(error.localizedDescription)
         }
     }
+    
+    //PUT
+    static func putRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
+        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
+        var urlRequest = URLRequest(url: url)
+        
+        for headers in header {
+            urlRequest.addValue(headers.value, forHTTPHeaderField: headers.key)
+        }
+        urlRequest.httpMethod = "PUT"
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            guard error == nil else { return }
+            guard let httpUrlResponse = response as? HTTPURLResponse else { return }
+            guard let data = data else { return }
+            
+            
+            callBack(data, httpUrlResponse.statusCode)
+        }
+        task.resume()
+    }
 }
 

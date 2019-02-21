@@ -47,14 +47,7 @@ class AddRecipientAddressViewController: UIViewController {
         guard let district = districtTextField.text else { return  }
         guard let others = othersTextField.text else { return  }
         
-        nameLabel.text = name
-        phoneCodeLabel.text = phoneCode
-        phoneNumberLabel.text = phoneNumber
-        countryCodeLabel.text = countryCode
-        postCodeLabel.text = postCode
-        cityLabel.text = city
-        districtLabel.text = district
-        othersLabel.text = others
+        
         
         let body: [String:Any] = [
             "name":name,
@@ -76,14 +69,22 @@ class AddRecipientAddressViewController: UIViewController {
                     print(statusCode)
                 default:
                     print(statusCode)
-                    
                 }
-                
                 
             } catch {
                 
             }
         }
+        
+        nameLabel.text = name
+        phoneCodeLabel.text = phoneCode
+        phoneNumberLabel.text = phoneNumber
+        countryCodeLabel.text = countryCode
+        postCodeLabel.text = postCode
+        cityLabel.text = city
+        districtLabel.text = district
+        othersLabel.text = others
+        
     }
     
     override func viewDidLoad() {

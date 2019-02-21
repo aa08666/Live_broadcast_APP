@@ -68,12 +68,12 @@ class StartLiveViewController: UIViewController {
     }
     
     @IBAction func startLiveButton(_ sender: UIButton) {
-       let alert = UIAlertController(title: "Start your Channel ID", message: "Please type your Channel ID and TOKEN", preferredStyle: .alert)
+       let alert = UIAlertController(title: "Start your Channel", message: "請輸入直播賣代碼", preferredStyle: .alert)
         alert.addTextField { (textfield) in
-            textfield.placeholder = "Channel ID"
+            textfield.placeholder = "直播 ID"
         }
         alert.addTextField { (textField: UITextField) in
-            textField.placeholder = "Chanel token"
+            textField.placeholder = "直播描述"
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)

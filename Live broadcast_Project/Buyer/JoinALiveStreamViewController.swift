@@ -17,6 +17,30 @@ class JoinALiveStreamViewController: UIViewController {
     let header = Headers.init(token: UserDefaults.standard.value(forKey: UserDefaultKeys.token) as! String).header
     
     
+    @IBAction func endALiveStreamButton(_ sender: UIButton) {
+        
+        Request.putRequest(api: "/user-channel-id", header: header) { (data, statusCode) in
+            do{
+                let json = try JSON(data: data)
+                switch statusCode {
+                case 200:
+                    guard let result = json["result"].bool else {return}
+                    guard let reponse = json["response"].string else {return}
+                case 400:
+                    print(statusCode)
+                case 401:
+                    print(statusCode)
+                default:
+                    print(statusCode)
+                    
+                }
+                
+            } catch {
+                
+            }
+        }
+    }
+    
     @IBAction func joinALiveSteamButton(_ sender: UIButton) {
         guard let joinTextField = joinALiveStreamTextField.text else {return}
         let body: [String:Any] = [
@@ -76,6 +100,12 @@ class JoinALiveStreamViewController: UIViewController {
         } catch {
             print(error.localizedDescription)
         }
+        
+        
+        
+        
+        
+        
     }
     
     
