@@ -11,6 +11,7 @@ import Foundation
 struct UserDefaultKeys {
     static let token = "TokenKey"
 }
+let apiString = "https://facebookoptimizedlivestreamsellingsystem.rayoutstanding.space/api"
 
 struct Headers {
     let header: [String: String]
@@ -30,7 +31,7 @@ struct Request {
     
     // GET
     static func getRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
-        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
+        guard let url = URL(string: apiString + api) else { return }
         var urlRequest = URLRequest(url: url)
         
         for headers in header {
@@ -48,18 +49,15 @@ struct Request {
         task.resume()
         }
     
-
+    // POST
     static func postRequest(api:String, header:[String:String], expirationDate:Date,callBack: @escaping (Data) -> Void){
         
-        let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api)!
+        let url = URL(string: apiString + api)!
         var urlRequest = URLRequest(url: url)
         
         for headers in header {
             urlRequest.addValue(headers.value, forHTTPHeaderField: headers.key)
-            //        urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: "Content-Type")
-            //         urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: "X-Requested-With")
-            //         urlRequest.addValue("asdd \(token)", forHTTPHeaderField: "Authorization")
-            //  參照上面for in 的寫法
+          
         }
         
         
@@ -80,7 +78,7 @@ struct Request {
     
     // DELETE
     static func deleteRequest(api:String, header:[String:String], body: [String: Any], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
-        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
+        guard let url = URL(string: apiString + api) else { return }
         var urlRequest = URLRequest(url: url)
         
         for headers in header {
@@ -110,7 +108,7 @@ struct Request {
     
     //PUT
     static func putRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
-        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
+        guard let url = URL(string: apiString + api) else { return }
         var urlRequest = URLRequest(url: url)
         
         for headers in header {

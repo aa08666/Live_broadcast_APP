@@ -51,11 +51,11 @@ struct AddNewItem {
                 multipart.append(value.data(using: String.Encoding.utf8)!, withName: key)
             }
         },usingThreshold: UInt64.init(), to: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api/items" , method: .post, headers: header).responseJSON { (reponse) in
-            if reponse.result.isSuccess {
-                if let data = reponse.data {
-                    callBack(data)
-                }
-            }
+//            if reponse.result.isSuccess {
+//                if let data = reponse.data {
+//                    callBack(data)
+//                }
+//            }
         }
     }
    

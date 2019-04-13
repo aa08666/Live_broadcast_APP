@@ -1,5 +1,5 @@
 //
-//  SessionManager.swift
+//  Session.swift
 //
 //  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
 //
@@ -43,10 +43,10 @@ open class Session {
     var requestTaskMap = RequestTaskMap()
     public let startRequestsImmediately: Bool
 
-    public init(startRequestsImmediately: Bool = true,
-                session: URLSession,
+    public init(session: URLSession,
                 delegate: SessionDelegate,
                 rootQueue: DispatchQueue,
+                startRequestsImmediately: Bool = true,
                 requestQueue: DispatchQueue? = nil,
                 serializationQueue: DispatchQueue? = nil,
                 interceptor: RequestInterceptor? = nil,
@@ -59,10 +59,10 @@ open class Session {
         precondition(session.delegateQueue.underlyingQueue === rootQueue,
                      "SessionManager(session:) intializer must be passed the DispatchQueue used as the delegateQueue's underlyingQueue as rootQueue.")
 
-        self.startRequestsImmediately = startRequestsImmediately
         self.session = session
         self.delegate = delegate
         self.rootQueue = rootQueue
+        self.startRequestsImmediately = startRequestsImmediately
         self.requestQueue = requestQueue ?? DispatchQueue(label: "\(rootQueue.label).requestQueue", target: rootQueue)
         self.serializationQueue = serializationQueue ?? DispatchQueue(label: "\(rootQueue.label).serializationQueue", target: rootQueue)
         self.interceptor = interceptor
@@ -74,10 +74,10 @@ open class Session {
         delegate.stateProvider = self
     }
 
-    public convenience init(startRequestsImmediately: Bool = true,
-                            configuration: URLSessionConfiguration = .alamofireDefault,
+    public convenience init(configuration: URLSessionConfiguration = URLSessionConfiguration.af.default,
                             delegate: SessionDelegate = SessionDelegate(),
                             rootQueue: DispatchQueue = DispatchQueue(label: "org.alamofire.sessionManager.rootQueue"),
+                            startRequestsImmediately: Bool = true,
                             requestQueue: DispatchQueue? = nil,
                             serializationQueue: DispatchQueue? = nil,
                             interceptor: RequestInterceptor? = nil,
@@ -88,10 +88,10 @@ open class Session {
         let delegateQueue = OperationQueue(maxConcurrentOperationCount: 1, underlyingQueue: rootQueue, name: "org.alamofire.sessionManager.sessionDelegateQueue")
         let session = URLSession(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
 
-        self.init(startRequestsImmediately: startRequestsImmediately,
-                  session: session,
+        self.init(session: session,
                   delegate: delegate,
                   rootQueue: rootQueue,
+                  startRequestsImmediately: startRequestsImmediately,
                   requestQueue: requestQueue,
                   serializationQueue: serializationQueue,
                   interceptor: interceptor,
@@ -102,6 +102,7 @@ open class Session {
     }
 
     deinit {
+        finishRequestsForDeinit()
         session.invalidateAndCancel()
     }
 
@@ -325,22 +326,23 @@ open class Session {
                      interceptor: RequestInterceptor? = nil) -> UploadRequest {
         let convertible = ParameterlessRequestConvertible(url: url, method: method, headers: headers)
 
-        return upload(multipartFormData: multipartFormData,
+        let formData = MultipartFormData(fileManager: fileManager)
+        multipartFormData(formData)
+
+        return upload(multipartFormData: formData,
                       usingThreshold: encodingMemoryThreshold,
                       with: convertible,
                       interceptor: interceptor)
     }
 
-    open func upload(multipartFormData: @escaping (MultipartFormData) -> Void,
+    open func upload(multipartFormData: MultipartFormData,
                      usingThreshold encodingMemoryThreshold: UInt64 = MultipartUpload.encodingMemoryThreshold,
-                     fileManager: FileManager = .default,
                      with request: URLRequestConvertible,
                      interceptor: RequestInterceptor? = nil) -> UploadRequest {
         let multipartUpload = MultipartUpload(isInBackgroundSession: (session.configuration.identifier != nil),
                                               encodingMemoryThreshold: encodingMemoryThreshold,
                                               request: request,
-                                              fileManager: fileManager,
-                                              multipartBuilder: multipartFormData)
+                                              multipartFormData: multipartFormData)
 
         return upload(multipartUpload, interceptor: interceptor)
     }
@@ -427,7 +429,7 @@ open class Session {
             if let adapter = adapter(for: request) {
                 adapter.adapt(initialRequest, for: self) { result in
                     do {
-                        let adaptedRequest = try result.unwrap()
+                        let adaptedRequest = try result.get()
 
                         self.rootQueue.async {
                             request.didAdaptInitialRequest(initialRequest, to: adaptedRequest)
@@ -497,6 +499,12 @@ open class Session {
             return request.interceptor ?? interceptor
         }
     }
+
+    // MARK: - Invalidation
+
+    func finishRequestsForDeinit() {
+        requestTaskMap.requests.forEach { $0.finish(error: AFError.sessionDeinitialized) }
+    }
 }
 
 // MARK: - RequestDelegate
@@ -506,41 +514,35 @@ extension Session: RequestDelegate {
         return session.configuration
     }
 
-    public func willAttemptToRetryRequest(_ request: Request) -> Bool {
-        return retrier(for: request) != nil
+    public func retryResult(for request: Request, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        guard let retrier = retrier(for: request) else {
+            rootQueue.async { completion(.doNotRetry) }
+            return
+        }
+
+        retrier.retry(request, for: self, dueTo: error) { retryResult in
+            self.rootQueue.async {
+                guard let retryResultError = retryResult.error else { completion(retryResult); return }
+
+                let retryError = AFError.requestRetryFailed(retryError: retryResultError, originalError: error)
+                completion(.doNotRetryWithError(retryError))
+            }
+        }
     }
 
-    public func retryRequest(_ request: Request, ifNecessaryWithError error: Error) {
-        guard let retrier = retrier(for: request) else { request.finish(); return }
-
-        retrier.retry(request, for: self, dueTo: error) { result in
-            guard !request.isCancelled else { return }
-
-            self.rootQueue.async {
+    public func retryRequest(_ request: Request, withDelay timeDelay: TimeInterval?) {
+        self.rootQueue.async {
+            let retry: () -> Void = {
                 guard !request.isCancelled else { return }
 
-                if result.retryRequired {
-                    let retry: () -> Void = {
-                        guard !request.isCancelled else { return }
+                request.prepareForRetry()
+                self.perform(request)
+            }
 
-                        request.requestIsRetrying()
-                        self.perform(request)
-                    }
-
-                    if let retryDelay = result.delay {
-                        self.rootQueue.after(retryDelay) { retry() }
-                    } else {
-                        self.rootQueue.async { retry() }
-                    }
-                } else {
-                    var retryError = error
-
-                    if let retryResultError = result.error {
-                        retryError = AFError.requestRetryFailed(retryError: retryResultError, originalError: error)
-                    }
-
-                    request.finish(error: retryError)
-                }
+            if let retryDelay = timeDelay {
+                self.rootQueue.after(retryDelay) { retry() }
+            } else {
+                retry()
             }
         }
     }
@@ -605,8 +607,12 @@ extension Session: SessionStateProvider {
         requestTaskMap[task] = nil
     }
 
-    public func credential(for task: URLSessionTask, protectionSpace: URLProtectionSpace) -> URLCredential? {
+    public func credential(for task: URLSessionTask, in protectionSpace: URLProtectionSpace) -> URLCredential? {
         return requestTaskMap[task]?.credential ??
                session.configuration.urlCredentialStorage?.defaultCredential(for: protectionSpace)
+    }
+
+    public func cancelRequestsForSessionInvalidation(with error: Error?) {
+        requestTaskMap.requests.forEach { $0.finish(error: AFError.sessionInvalidated(error: error)) }
     }
 }

@@ -17,22 +17,16 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-@interface FBSDKViewHierarchy : NSObject
+NS_ASSUME_NONNULL_BEGIN
 
-+ (NSObject *)getParent:(NSObject *)obj;
-+ (NSArray<NSObject *> *)getChildren:(NSObject *)obj;
-+ (NSArray<NSObject *> *)getPath:(NSObject *)obj;
-+ (NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj;
+extern NSString *const FBSDKShareExtensionParamAppID; // application identifier string
+extern NSString *const FBSDKShareExtensionParamHashtags; // array of hashtag strings (max 1)
+extern NSString *const FBSDKShareExtensionParamQuotes; // array of quote strings (max 1)
+extern NSString *const FBSDKShareExtensionParamOGData; // dictionary of Open Graph data
 
-+ (NSString *)getText:(NSObject *)obj;
-+ (NSString *)getHint:(NSObject *)obj;
-+ (NSIndexPath *)getIndexPath:(NSObject *)obj;
-+ (NSUInteger)getClassBitmask:(NSObject *)obj;
-+ (UITableView *)getParentTableView:(UIView *)cell;
-+ (UICollectionView *)getParentCollectionView:(UIView *)cell;
-+ (NSInteger)getTag:(NSObject *)obj;
-+ (NSNumber *)getViewReactTag:(UIView *)view;
+NSString *_Nullable FBSDKShareExtensionInitialText(NSString *_Nullable appID,
+                                                   NSString *_Nullable hashtag,
+                                                   NSString *_Nullable jsonString);
 
-@end
+NS_ASSUME_NONNULL_END

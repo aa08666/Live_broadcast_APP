@@ -21,7 +21,6 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //start animation
         myLoadingAnimation.startAnimating()
         reuseConfirm()
     }
@@ -50,16 +49,20 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
                 
                 Request.postRequest(api: "/token", header: Headers.init(token: token.authenticationToken).header, expirationDate: token.expirationDate, callBack: { (callBack) in
                     DispatchQueue.main.async {
-                        
-                        let json = try? JSON(data: callBack)
-                        if let jsonResult = json!["result"].bool {
+                        do{
+                        let json = try JSON(data: callBack)
+                        if let jsonResult = json["result"].bool {
                             if jsonResult {
-                                //                               self.myLoadingAnimation.stopAnimating()
-                                //                                self.navigationController?.pushViewController(self.idvc, animated: true)
-                                self.reuseConfirm()
+                                guard let accessToken = json["response"]["access_token"].string else {return}
+                                guard let expiresIn = json["response"]["expires_in"].int else {return}
+                                    self.reuseConfirm()
+                                self.navigationController?.pushViewController(self.idvc, animated: true)
                             }
                         }
-                        print(json!["response"].string)
+                       
+                        }catch{
+                            print(error.localizedDescription)
+                        }
                     }
                     print(callBack)
                 })
@@ -73,8 +76,8 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
     func reuseConfirm(){
         
         guard let userToken = userDefault.value(forKey: UserDefaultKeys.token) as? String  else {
-            print("animation stop")
-            //            myLoadingAnimation.stopAnimation()
+            
+            
             return
         }
         
