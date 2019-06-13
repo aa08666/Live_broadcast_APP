@@ -31,39 +31,33 @@ class AddRecipientAddressViewController: UIViewController {
     
     @IBAction func addAddressButton(_ sender: UIButton) {
         
-        guard let name = nameTextField.text else { return }
-        guard let phoneCode = phoneCodeTextField.text else { return  }
-        guard let phoneNumber = phoneNumberTextField.text else { return  }
-        guard let countryCode = countryCodeTextField.text else { return  }
-        guard let postCode = postCodeTextField.text else { return  }
-        guard let city = cityTextField.text else { return  }
-        guard let district = districtTextField.text else { return  }
-        guard let others = othersTextField.text else { return  }
-        guard let postCodeInt = Int(postCode) else { return  }
-        let alert = UIAlertController(title: "新增商品", message: "你已新增成功", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
-        let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
+        guard let name = nameTextField.text,
+            let phoneNumber = phoneNumberTextField.text,
+            let phoneCode = phoneCodeTextField.text,
+            let countryCode = countryCodeTextField.text,
+            let postCode = postCodeTextField.text,
+            let city = cityTextField.text,
+            let district = districtTextField.text,
+            let others = othersTextField.text,
+            let postCodeInt = Int(postCode) else { return  }
         
-        alert.addAction(cancelAction)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
+        alertFunc("新增商品", "你已新增成功", "取消", "確認")
         
+
         
-        
-        let body: [String:Any] = [
-            "name":name,
-            "phone":
-                ["phone_code":phoneCode,"phone_number":phoneNumber],
-            "address":["country_code":countryCode,"post_code":postCodeInt,"city":city,"district":district,"others":others]
-        ]
-        
-        self.addRecipientAddressRequest(api: "/recipients", header: header, body: body) { (data, statusCode) in
+        let body = Body(name: name, phoneCode: phoneCode, phoneNumber: phoneNumber, countryCode: countryCode, postCode: postCode, city: city, district: district, others: others, postCodeInt: postCodeInt)
+       
+        self.addRecipientAddressRequest(api: "/recipients", headers: header, body: body.myBody) { (data, statusCode) in
+            
+            
+            
+            
             do{
                 let json = try JSON(data: data)
                 switch statusCode {
                 case 200:
                     guard let result = json["result"].bool else {return}
-                    self.present(alert, animated: true, completion: nil)
+                    print(result)
                 case 400:
                     print(statusCode)
                 case 401:
@@ -73,7 +67,7 @@ class AddRecipientAddressViewController: UIViewController {
                 }
                 
             } catch {
-                
+                print(error.localizedDescription)
             }
         }
         
@@ -84,14 +78,24 @@ class AddRecipientAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-   
     
-    func addRecipientAddressRequest(api:String, header:[String:String], body: [String: Any], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
+    
+    func alertFunc(_ controllerTitle: String, _ controllermessage: String, _ actionTitle: String, _ secondActionTitle: String) {
+        let alertController = UIAlertController(title: controllerTitle, message: controllermessage, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: nil)
+        let secondAlertAction = UIAlertAction(title: secondActionTitle, style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        alertController.addAction(secondAlertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func addRecipientAddressRequest(api:String, headers:[String:String], body: [String: Any], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
         guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
         var urlRequest = URLRequest(url: url)
         
-        for headers in header {
-            urlRequest.addValue(headers.value, forHTTPHeaderField: headers.key)
+        for header in headers {
+            urlRequest.addValue(header.value, forHTTPHeaderField: header.key)
         }
         
         do {
@@ -103,6 +107,7 @@ class AddRecipientAddressViewController: UIViewController {
             
             
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                
                 guard error == nil else { return }
                 guard let httpUrlResponse = response as? HTTPURLResponse else { return }
                 guard let data = data else { return }
@@ -114,8 +119,36 @@ class AddRecipientAddressViewController: UIViewController {
         } catch {
             print(error.localizedDescription)
         }
-
-    
-
+        
+        
+        
     }
+}
+
+struct Body {
+    var myBody: [String:Any] {
+        let body: [String:Any] = [
+            "name":name,
+            "phone":
+                ["phone_code":phoneCode,
+                 "phone_number":phoneNumber],
+                "address":["country_code":countryCode,
+                           "post_code":postCodeInt,
+                           "city":city,
+                           "district":district,
+                           "others":others]
+        ]
+        return body
+    }
+    var name: String
+    var phoneCode: String
+    var phoneNumber: String
+    var countryCode: String
+    var postCode: String
+    var city: String
+    var district: String
+    var others: String
+    var postCodeInt: Int
+    
+   
 }

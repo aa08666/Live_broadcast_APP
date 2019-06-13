@@ -6,7 +6,7 @@
 //  Copyright © 2019 柏呈. All rights reserved.
 //
 
- //TODOLIS： 1. 查 escaping 用法 2.查 callBack 用法 3. URLRequest 深入了解
+
 import UIKit
 import SwiftyJSON
 
@@ -26,7 +26,7 @@ class ProductListTableViewController: UITableViewController {
     
     var items = [ItemsModel]()
     
-    // call fucn 要帶的 header 參數
+    
     let header = Headers.init(token: UserDefaults.standard.value(forKey: UserDefaultKeys.token) as! String).header
     
     override func viewDidLoad() {

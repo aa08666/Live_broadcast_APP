@@ -21,8 +21,8 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myLoadingAnimation.startAnimating()
-        reuseConfirm()
+//        myLoadingAnimation.startAnimating()
+//        reuseConfirm()
     }
     
     

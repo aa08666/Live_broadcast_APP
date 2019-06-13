@@ -24,48 +24,24 @@ class StartLiveViewController: UIViewController {
     
     // 結束直播
     @IBAction func turnOffStream(_ sender: UIButton){
-        putRequest(api: "/users-channel-id", header: header) { (data, statusCode) in
+        Request.putRequest(api: "users-channel-id", header: header) { (data, statusCode) in
             if statusCode == 200 {
-                print(statusCode)
-                DispatchQueue.main.async {
-                    self.title = nil
-                }
-//                self.endButton.changeButtonStatus(&self.startButton)
-            } else {
-                do {
+                do{
                     let json = try JSON(data: data)
-                    print(json)
-                    guard let response = json["response"].string else { return }
-                    print(response)
-                } catch {
-                    print(error.localizedDescription)
+                    if let result = json["result"].bool {
+                        if result == true {
+                            self.title = nil
+                        }
+                    }
+                    
+                }catch{
+                    
                 }
-                
-                
-                print(statusCode)
             }
         }
     }
     
-    // PUT
-    func putRequest(api:String, header:[String:String], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void){
-        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
-        var urlRequest = URLRequest(url: url)
-        
-        for (key, value) in header {
-            urlRequest.addValue(value, forHTTPHeaderField: key)
-        }
-        urlRequest.httpMethod = "PUT"
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard error == nil else { return }
-            guard let httpUrlResponse = response as? HTTPURLResponse else { return }
-            guard let data = data else { return }
-            
-            
-            callBack(data, httpUrlResponse.statusCode)
-        }
-        task.resume()
-    }
+   
     
     @IBAction func startLiveButton(_ sender: UIButton) {
        let alert = UIAlertController(title: "Start your Channel", message: "請輸入直播賣代碼", preferredStyle: .alert)
@@ -78,8 +54,8 @@ class StartLiveViewController: UIViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
-        let iFrameTextField = alert.textFields![0] as! UITextField
-        let chanelTextField = alert.textFields![1] as! UITextField
+            let iFrameTextField = alert.textFields![0] 
+            let chanelTextField = alert.textFields![1] as! UITextField
             guard let iframeText = iFrameTextField.text else { return }
             guard let chanelDescription = chanelTextField.text else { return }
             let body:[String:Any] =
@@ -108,9 +84,7 @@ class StartLiveViewController: UIViewController {
     func startLive( _ header: [String:String], _ body : [String:Any], callback: @escaping(_ result: Bool, _ chanelToken: String)->Void) {
         
         StartLiveStreamRequest(api: "/channel", header: header, body: body) { (data, statusCode) in
-            print(statusCode)
             if statusCode == 200 {
-
                 do{
                     let json = try JSON.init(data: data)
                     guard let result = json["result"].bool else { return }
@@ -125,8 +99,6 @@ class StartLiveViewController: UIViewController {
                 }
             }else{
                 print(statusCode)
-                let json = try! JSON(data: data)
-                print(json)
             }
             
             
@@ -136,7 +108,7 @@ class StartLiveViewController: UIViewController {
 
     func StartLiveStreamRequest(api:String, header:[String:String], body:[String:Any], callBack: @escaping (_ data: Data, _ statusCode: Int) -> Void) {
         
-        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayawesomespace.space/api" + api) else { return }
+        guard let url = URL(string: "https://facebookoptimizedlivestreamsellingsystem.rayoutstanding.space/api" + api) else { return }
         var urlRequest = URLRequest(url: url)
         
         for headers in header {
