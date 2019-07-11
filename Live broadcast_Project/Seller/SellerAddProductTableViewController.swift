@@ -50,6 +50,8 @@ class SellerAddProductTableViewController: UITableViewController, UINavigationCo
                         self.navigationController?.popViewController(animated: true)
                     }
                     
+                }else{
+                    print("新增失敗")
                 }
             } catch {
                 print(error.localizedDescription)

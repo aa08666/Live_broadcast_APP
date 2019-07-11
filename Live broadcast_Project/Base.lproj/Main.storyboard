@@ -1011,7 +1011,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tK4-bR-oDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2884" y="1433.433283358321"/>
+            <point key="canvasLocation" x="2044" y="1585"/>
         </scene>
         <!--Seller Add Product Table View Controller-->
         <scene sceneID="l3r-3O-EbE">
@@ -1204,7 +1204,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujN-2p-cES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2884" y="760"/>
+            <point key="canvasLocation" x="3044" y="1510"/>
         </scene>
         <!--Start Live View Controller-->
         <scene sceneID="ooS-Bn-5sp">

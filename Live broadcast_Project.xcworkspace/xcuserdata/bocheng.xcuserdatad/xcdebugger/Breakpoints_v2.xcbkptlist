@@ -2,4 +2,182 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/SellerAddProductTableViewController.swift"
+            timestampString = "584549538.297246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "createProductButton(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Live_broadcast_Project.SellerAddProductTableViewController.createProductButton(__C.UIButton) -&gt; ()"
+                  moduleName = "Live broadcast_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bocheng/Desktop/Software%20dev./iOS/iOS_Project/%E6%88%91%E7%9A%84%E5%B0%88%E6%A1%88/Live%20broadcast_Project/Live%20broadcast_Project/Seller/SellerAddProductTableViewController.swift"
+                  timestampString = "584549538.324973"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "2802">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Foundation.Data) -&gt; () in Live_broadcast_Project.SellerAddProductTableViewController.createProductButton(__C.UIButton) -&gt; ()"
+                  moduleName = "Live broadcast_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bocheng/Desktop/Software%20dev./iOS/iOS_Project/%E6%88%91%E7%9A%84%E5%B0%88%E6%A1%88/Live%20broadcast_Project/Live%20broadcast_Project/Seller/SellerAddProductTableViewController.swift"
+                  timestampString = "584549538.32851"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "240">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/addNewItems.swift"
+            timestampString = "584549538.297551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "uploadProduct(_:_:_:_:productCost:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/addNewItems.swift"
+            timestampString = "584549538.29827"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "uploadProduct(_:_:_:_:productCost:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/addNewItems.swift"
+            timestampString = "584549538.298695"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "uploadProduct(_:_:_:_:productCost:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/addNewItems.swift"
+            timestampString = "584549538.29908"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "uploadProduct(_:_:_:_:productCost:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/addNewItems.swift"
+            timestampString = "584549538.299456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "uploadProduct(_:_:_:_:productCost:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Live broadcast_Project/Seller/addNewItems.swift"
+            timestampString = "584549538.299829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "uploadProduct(_:_:_:_:productCost:_:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Live_broadcast_Project.AddNewItem.uploadProduct(_: __C.UIImage, _: Swift.String, _: Swift.String, _: Swift.String, productCost: Swift.String, _: Swift.String, _: (Foundation.Data) -&gt; ()) -&gt; ()"
+                  moduleName = "Live broadcast_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bocheng/Desktop/Software%20dev./iOS/iOS_Project/%E6%88%91%E7%9A%84%E5%B0%88%E6%A1%88/Live%20broadcast_Project/Live%20broadcast_Project/Seller/addNewItems.swift"
+                  timestampString = "584549538.410127"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "3330">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in Live_broadcast_Project.AddNewItem.uploadProduct(_: __C.UIImage, _: Swift.String, _: Swift.String, _: Swift.String, productCost: Swift.String, _: Swift.String, _: (Foundation.Data) -&gt; ()) -&gt; ()"
+                  moduleName = "Live broadcast_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bocheng/Desktop/Software%20dev./iOS/iOS_Project/%E6%88%91%E7%9A%84%E5%B0%88%E6%A1%88/Live%20broadcast_Project/Live%20broadcast_Project/Seller/addNewItems.swift"
+                  timestampString = "584549538.4136339"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "228">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

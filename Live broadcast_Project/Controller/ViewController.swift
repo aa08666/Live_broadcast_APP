@@ -5,18 +5,19 @@
 //  Created by 柏呈 on 2019/1/24.
 //  Copyright © 2019 柏呈. All rights reserved.
 //
-
 import UIKit
 import FacebookLogin
 import FacebookCore
 import SwiftyJSON
 import NVActivityIndicatorView
 
+let myUserDefault = UserDefaults.standard
+
 class ViewController: UIViewController, NVActivityIndicatorViewable {
     let myLoadingAnimation = MyNVActivityIndicator()
-    var userDefault = UserDefaults.standard
+
     
-  
+
     let idvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "IDViewController")
     
     override func viewDidLoad() {
@@ -41,22 +42,22 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
             case .failed(let error):
                 print(error.localizedDescription)
             case .success(grantedPermissions: let grantedPermissions , declinedPermissions: let declinedPermissions, token: let token):
-                print(token.authenticationToken)
-                print(token.expirationDate)
+
                 
-                
-                self.userDefault.setValue(token.authenticationToken, forKey: UserDefaultKeys.token)
+//                self.userDefault.setValue(token.authenticationToken, forKey: UserDefaultKeys.token)
                 
                 Request.postRequest(api: "/token", header: Headers.init(token: token.authenticationToken).header, expirationDate: token.expirationDate, callBack: { (callBack) in
                     DispatchQueue.main.async {
                         do{
                         let json = try JSON(data: callBack)
+                            if let accessToken = json["response"]["access_token"].string {
+                                self.navigationController?.pushViewController(self.idvc, animated: true)
+                                print("登入 TOKEN is \(accessToken)")
+                                userDefault.set(accessToken, forKey: "token")
+                            }
                         if let jsonResult = json["result"].bool {
                             if jsonResult {
-                                guard let accessToken = json["response"]["access_token"].string else {return}
-                                guard let expiresIn = json["response"]["expires_in"].int else {return}
-                                    self.reuseConfirm()
-                                self.navigationController?.pushViewController(self.idvc, animated: true)
+//                                    self.reuseConfirm()
                             }
                         }
                        
@@ -73,6 +74,7 @@ class ViewController: UIViewController, NVActivityIndicatorViewable {
         
     }
     
+   
     func reuseConfirm(){
         
         guard let userToken = userDefault.value(forKey: UserDefaultKeys.token) as? String  else {

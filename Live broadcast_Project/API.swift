@@ -11,6 +11,7 @@ import Foundation
 struct UserDefaultKeys {
     static let token = "TokenKey"
 }
+
 let apiString = "https://facebookoptimizedlivestreamsellingsystem.rayoutstanding.space/api"
 
 struct Headers {
@@ -43,7 +44,6 @@ struct Request {
             guard let httpUrlResponse = response as? HTTPURLResponse else { return }
             guard let data = data else { return }
             
-           
                 callBack(data, httpUrlResponse.statusCode)
             }
         task.resume()
